@@ -1,0 +1,29 @@
+public class HandScorer implements HandScorerInterface {
+  public int score(StackInterface<Card> hand){
+    int score = 0;
+    int Count = 0;
+    while(!hand.isEmpty()){
+      Card card = hand.pop();
+      if(card.getValue().equals("ace")){
+        Count++;
+      }
+      else if(card.getValue().equals("jack") || card.getValue().equals("king") || card.getValue().equals("queen")){
+        score +=10;
+      }
+      else{
+        score += Integer.parseInt(card.getValue());
+      }
+    }
+    while(Count>0){
+      if(score + 11 >21){
+        score +=1;
+      }
+      else{
+        score +=11;
+      }
+      Count--;
+    }
+    return score;
+  }
+
+}

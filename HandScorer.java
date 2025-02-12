@@ -2,8 +2,10 @@ public class HandScorer implements HandScorerInterface {
   public int score(StackInterface<Card> hand){
     int score = 0;
     int Count = 0;
+    LinkedStack<Card> theStack = new LinkedStack<>();
     while(!hand.isEmpty()){
       Card card = hand.pop();
+      theStack.push(card);
       if(card.getValue().equals("ace")){
         Count++;
       }
@@ -23,7 +25,9 @@ public class HandScorer implements HandScorerInterface {
       }
       Count--;
     }
+    while(!theStack.isEmpty()){
+      hand.push(theStack.pop());
+    }
     return score;
   }
-
 }
